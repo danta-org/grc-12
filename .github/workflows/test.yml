@@ -37,5 +37,5 @@ jobs:
         workflow: test.yml
         pr: ${{github.event.pull_request.number}}
     - name: read file
-        run: cat output.txt
+      run: cat output.txt
     
