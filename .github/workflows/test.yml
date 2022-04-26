@@ -8,7 +8,6 @@ on:
   
 jobs:
   upload:
-    name: 'Artifact upload'
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     defaults:
@@ -21,7 +20,6 @@ jobs:
           name: test-artifact
           path: ./*txt
    download:
-    name: 'Artifact download'
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     defaults:
