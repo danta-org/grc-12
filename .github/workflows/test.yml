@@ -16,7 +16,7 @@ jobs:
         shell: bash
     steps:
     - name: create file
-      run: echo "${{ github.run.id }}" > output.txt
+      run: echo "${{github.event.pull_request.number}}" > output.txt
     - uses: actions/upload-artifact@v3
       with:
         name: test-artifact
