@@ -22,20 +22,21 @@ jobs:
         name: test-artifact
         path: ./*txt
  
-    download:
-      runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      defaults:
-        run:
-          shell: bash
-      steps:
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          github_token: ${{secrets.GH_TOKEN}}
-          # Required, workflow file name or ID
-          workflow: test.yml
-          pr: ${{github.event.pull_request.number}}
-      - name: read file
-        run: cat output.txt
+  download:
+    name: 'download a file'
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GH_TOKEN}}
+        # Required, workflow file name or ID
+        workflow: test.yml
+        pr: ${{github.event.pull_request.number}}
+    - name: read file
+      run: cat output.txt
 
